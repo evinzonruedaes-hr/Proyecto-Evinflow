@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EvinFlow - Presupuestos</title>
+<link rel="stylesheet" href="presupuestos.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR (igual al resto de páginas) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">Evin<span>Flow</span></div>
+
+        <nav class="nav-menu">
+            <a href="../dashboard/dashboard.html" class="nav-item">Dashboard</a>
+            <a href="../Clientes/clientes.html" class="nav-item">Clientes</a>
+            <a href="../proyectos/proyectos.html" class="nav-item">Proyectos</a>
+            <a href="presupuestos.html" class="nav-item activo">Presupuestos</a>
+            <a href="../tareas/tareas.html" class="nav-item">Tareas</a>
+            <a href="../perfil/perfil.html" class="nav-item">Configuración</a>
+        </nav>
+
+        <div class="sidebar-usuario">
+            <p class="nombre">Stiven Rueda</p>
+            <p class="rol">Administrador</p>
+        </div>
+    </aside>
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <input type="text" class="buscador" placeholder="Buscar...">
+        <div class="topbar-derecha">
+            <span class="icono">🔔</span>
+            <div class="avatar">S</div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO -->
+    <main class="contenido">
+
+        <div class="encabezado-pagina">
+            <div>
+                <h1>Presupuestos</h1>
+                <p>Ejemplo de página conectada a Cliente y Proyecto (solo de referencia).</p>
+            </div>
+            <button class="btn-primario" id="btnNuevoPresupuesto">+ Nuevo presupuesto</button>
+        </div>
+
+        <!-- BARRA DE BUSQUEDA Y FILTRO -->
+        <div class="barra-tabla">
+            <input type="text" id="buscadorPresupuestos" class="input-busqueda" placeholder="Buscar por cliente o proyecto...">
+            <select id="filtroEstadoPago" class="selector-filtro">
+                <option value="todos">Todos los estados</option>
+                <option value="pagado">Pagado</option>
+                <option value="pendiente">Pendiente</option>
+                <option value="vencido">Vencido</option>
+            </select>
+        </div>
+
+        <!-- TABLA DE PRESUPUESTOS -->
+        <div class="panel">
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Proyecto</th>
+                        <th>Monto</th>
+                        <th>Deuda pendiente</th>
+                        <th>Estado</th>
+                        <th>Fecha límite de pago</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <!--
+                    Este <tbody> se llena con JavaScript (ver presupuestos.js).
+                    Los 3 presupuestos de ejemplo ahora viven en un arreglo
+                    dentro de presupuestos.js.
+                -->
+                <tbody id="tablaPresupuestosBody"></tbody>
+            </table>
+
+            <p class="mensaje-vacio oculto" id="mensajeSinPresupuestos">
+            </p>
+        </div>
+
+    </main>
+
+    <!--
+        Formulario de "Nuevo presupuesto" / "Editar presupuesto", integrado
+        directamente aquí (todo en un solo archivo HTML, igual que
+        Clientes y Proyectos).
+    -->
+    <div class="overlay-formulario oculto" id="formularioPresupuesto">
+        <div class="caja-formulario">
+            <h2 id="tituloFormularioPresupuesto">Nuevo presupuesto</h2>
+
+            <form id="formPresupuesto">
+                <div class="campo">
+                    <label for="proyectoPresupuesto">Proyecto</label>
+                    <!-- Las opciones se generan con JS (cargarOpcionesProyecto), a partir de proyectosDisponibles. -->
+                    <select id="proyectoPresupuesto" name="proyectoId" required>
+                        <option value="">Selecciona un proyecto</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="clienteAsociado">Cliente asociado</label>
+                    <!-- Se completa solo al elegir un proyecto arriba. -->
+                    <input type="text" id="clienteAsociado" disabled placeholder="Se completa según el proyecto elegido">
+                </div>
+
+                <div class="fila-campos">
+                    <div class="campo">
+                        <label for="montoPresupuesto">Monto total</label>
+                        <input type="number" id="montoPresupuesto" name="monto" min="0" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="abonoPresupuesto">Abono realizado</label>
+                        <input type="number" id="abonoPresupuesto" name="abono" min="0" required>
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label for="deudaPresupuesto">Deuda pendiente</label>
+                    <!-- Se calcula sola: monto - abono. El usuario no la escribe. -->
+                    <input type="text" id="deudaPresupuesto" disabled placeholder="Se calcula automáticamente">
+                </div>
+
+                <div class="campo">
+                    <label for="estadoPresupuesto">Estado</label>
+                    <!-- Se calcula solo: deuda > 0 -> Pendiente, deuda = 0 -> Pagado. -->
+                    <input type="text" id="estadoPresupuesto" disabled placeholder="Se calcula automáticamente">
+                </div>
+
+                <!-- Mensaje de error simple (ej: abono mayor al monto). Empieza oculto. -->
+                <p class="mensaje-error oculto" id="errorPresupuesto"></p>
+
+                <div class="campo">
+                    <label for="fechaLimitePago">Fecha límite de pago</label>
+                    <input type="date" id="fechaLimitePago" name="fechaLimitePago" required>
+                </div>
+
+                <div class="campo">
+                    <label for="notasPresupuesto">Información adicional</label>
+                    <textarea id="notasPresupuesto" name="notasAdicionales" rows="3" placeholder="Notas, condiciones de pago, abonos previos, etc."></textarea>
+                </div>
+
+                <div class="botones-formulario">
+                    <button type="button" class="btn-secundario" id="btnCancelarPresupuesto">Cancelar</button>
+                    <button type="submit" class="btn-primario">Guardar presupuesto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script src="presupuestos.js"></script>
+
+</body>
+</html>

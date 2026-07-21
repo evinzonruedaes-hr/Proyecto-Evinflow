@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EvinFlow - Perfil</title>
+<link rel="stylesheet" href="perfil.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR (igual al del resto de páginas) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">Evin<span>Flow</span></div>
+
+        <nav class="nav-menu">
+            <a href="../dashboard/dashboard.html" class="nav-item">Dashboard</a>
+            <a href="../Clientes/clientes.html" class="nav-item">Clientes</a>
+            <a href="../proyectos/proyectos.html" class="nav-item">Proyectos</a>
+            <a href="../presupuesto/presupuestos.html" class="nav-item">Presupuestos</a>
+            <a href="../tareas/tareas.html" class="nav-item">Tareas</a>
+            <a href="perfil.html" class="nav-item activo">Configuración</a>
+        </nav>
+
+        <div class="sidebar-usuario">
+            <p class="nombre">Stiven Rueda</p>
+            <p class="rol">Administrador</p>
+        </div>
+    </aside>
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <input type="text" class="buscador" placeholder="Buscar...">
+        <div class="topbar-derecha">
+            <span class="icono">🔔</span>
+            <div class="avatar">S</div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO -->
+    <main class="contenido">
+
+        <div class="encabezado-pagina">
+            <div>
+                <h1>Mi perfil</h1>
+                <p>Consulta y actualiza tu información personal.</p>
+            </div>
+        </div>
+
+        <div class="panel panel-perfil">
+
+            <!-- FOTO DE PERFIL (OPCIONAL) -->
+            <div class="bloque-foto">
+            
+                <div class="foto-perfil" id="fotoPerfil">S</div>
+
+                <div class="acciones-foto">
+                    
+                    <button type="button" class="btn-secundario" id="btnCambiarFoto">Cambiar foto</button>
+                    <p class="texto-ayuda">Opcional. JPG o PNG, máx. 2MB.</p>
+                </div>
+            </div>
+
+            <hr class="separador">
+
+            <!-- FORMULARIO DE DATOS BASICOS -->
+            <form id="formPerfil">
+
+                <div class="campo">
+                    <label for="nombreUsuario">Nombre</label>
+                    <input type="text" id="nombreUsuario" name="nombre" value="Stiven Rueda" required>
+                </div>
+
+                <div class="campo">
+                    <label for="correoUsuario">Correo</label>
+                    <input type="email" id="correoUsuario" name="correo" value="stiven.rueda@correo.com" required>
+                </div>
+
+                <div class="campo">
+                    <label for="fechaRegistroUsuario">Miembro desde</label>
+                    <input type="text" id="fechaRegistroUsuario" value="10 de mayo de 2026" disabled>
+                </div>
+
+                <hr class="separador">
+
+                <h2 class="subtitulo-seccion">Cambiar contraseña</h2>
+                <p class="texto-ayuda">Deja estos campos vacíos si no quieres cambiar tu contraseña.</p>
+
+                <div class="campo">
+                    <label for="contrasenaActual">Contraseña actual</label>
+                    <input type="password" id="contrasenaActual" name="contrasenaActual" placeholder="••••••••">
+                </div>
+
+                <div class="fila-campos">
+                    <div class="campo">
+                        <label for="contrasenaNueva">Nueva contraseña</label>
+                        <input type="password" id="contrasenaNueva" name="contrasenaNueva" placeholder="••••••••">
+                    </div>
+
+                    <div class="campo">
+                        <label for="confirmarContrasenaNueva">Confirmar nueva contraseña</label>
+                        <input type="password" id="confirmarContrasenaNueva" name="confirmarContrasenaNueva" placeholder="••••••••">
+                    </div>
+                </div>
+
+                <p class="mensaje-error oculto" id="errorContrasena">Las contraseñas nuevas no coinciden.</p>
+
+                <div class="botones-formulario">
+                    <button type="button" class="btn-secundario" id="btnCancelarPerfil">Cancelar</button>
+
+                    <button type="submit" class="btn-primario">Guardar cambios</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

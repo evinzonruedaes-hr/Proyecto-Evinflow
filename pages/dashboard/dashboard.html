@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EvinFlow - Dashboard</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">Evin<span>Flow</span></div>
+
+        <nav class="nav-menu">
+            <a href="dashboard.html" class="nav-item activo">Dashboard</a>
+            <a href="../Clientes/clientes.html" class="nav-item">Clientes</a>
+            <a href="../proyectos/proyectos.html" class="nav-item">Proyectos</a>
+            <a href="../presupuesto/presupuestos.html" class="nav-item">Presupuestos</a>
+            <a href="../tareas/tareas.html" class="nav-item">Tareas</a>
+            <a href="../perfil/perfil.html" class="nav-item">Configuración</a>
+        </nav>
+
+        <div class="sidebar-usuario">
+            <p class="nombre">Stiven Rueda</p>
+            <p class="rol">Administrador</p>
+        </div>
+    </aside>
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <input type="text" class="buscador" placeholder="Buscar...">
+        <div class="topbar-derecha">
+            <span class="icono">🔔</span>
+            <div class="avatar">S</div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO -->
+    <main class="contenido">
+
+        <div class="bienvenida">
+            <h1>¡Bienvenido, Stiven! 👋</h1>
+            <p>Aquí tienes un resumen general de EvinFlow.</p>
+        </div>
+
+        <!-- TARJETAS DE METRICAS -->
+        <section class="metricas">
+            <div class="tarjeta-metrica">
+                <p class="metrica-label">Clientes totales</p>
+                <p class="metrica-num">128</p>
+                <p class="metrica-cambio positivo">↑ 12% vs mes anterior</p>
+            </div>
+            <div class="tarjeta-metrica">
+                <p class="metrica-label">Proyectos activos</p>
+                <p class="metrica-num">24</p>
+                <p class="metrica-cambio positivo">↑ 8% vs mes anterior</p>
+            </div>
+            <div class="tarjeta-metrica">
+                <p class="metrica-label">Proyectos completados</p>
+                <p class="metrica-num">15</p>
+                <p class="metrica-cambio positivo">↑ 20% vs mes anterior</p>
+            </div>
+            <div class="tarjeta-metrica">
+                <p class="metrica-label">Ingresos del mes</p>
+                <p class="metrica-num">$28.450.000</p>
+                <p class="metrica-cambio positivo">↑ 18% vs mes anterior</p>
+            </div>
+        </section>
+
+        <!-- PROYECTOS POR ESTADO + ACTIVIDAD RECIENTE -->
+        <section class="fila-doble">
+
+            <div class="panel">
+                <h2>Proyectos por estado</h2>
+
+                <div class="barra-estado">
+                    <div class="barra-info">
+                        <span>En planificación</span>
+                        <span>8</span>
+                    </div>
+                    <div class="barra-fondo">
+                        <div class="barra-relleno" style="width: 33%; background-color:#a5b4fc;"></div>
+                    </div>
+                </div>
+
+                <div class="barra-estado">
+                    <div class="barra-info">
+                        <span>En ejecución</span>
+                        <span>7</span>
+                    </div>
+                    <div class="barra-fondo">
+                        <div class="barra-relleno" style="width: 29%; background-color:#10b981;"></div>
+                    </div>
+                </div>
+
+                <div class="barra-estado">
+                    <div class="barra-info">
+                        <span>En revisión</span>
+                        <span>5</span>
+                    </div>
+                    <div class="barra-fondo">
+                        <div class="barra-relleno" style="width: 21%; background-color:#facc15;"></div>
+                    </div>
+                </div>
+
+                <div class="barra-estado">
+                    <div class="barra-info">
+                        <span>Completados</span>
+                        <span>4</span>
+                    </div>
+                    <div class="barra-fondo">
+                        <div class="barra-relleno" style="width: 17%; background-color:#0d9488;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Actividad reciente</h2>
+                <ul class="lista-actividad">
+                    <li>
+                        <span class="punto-actividad"></span>
+                        <div>
+                            <p>Se agregó un nuevo cliente: Grupo Empresarial SAS</p>
+                            <span class="fecha-actividad">Hace 2 horas</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="punto-actividad"></span>
+                        <div>
+                            <p>Proyecto "Sitio Web Corporativo" fue actualizado</p>
+                            <span class="fecha-actividad">Hace 4 horas</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="punto-actividad"></span>
+                        <div>
+                            <p>Tarea "Diseño de interfaz" completada</p>
+                            <span class="fecha-actividad">Hace 6 horas</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="punto-actividad"></span>
+                        <div>
+                            <p>Presupuesto #2024-015 fue aprobado</p>
+                            <span class="fecha-actividad">Hace 1 día</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </section>
+
+        <!-- PROYECTOS PROXIMOS + TAREAS PENDIENTES -->
+        <section class="fila-doble">
+
+            <div class="panel">
+                <h2>Proyectos próximos a vencer</h2>
+                <table class="tabla-proyectos">
+                    <thead>
+                        <tr>
+                            <th>Proyecto</th>
+                            <th>Fecha</th>
+                            <th>Prioridad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Rediseño de identidad visual</td>
+                            <td>25 May</td>
+                            <td><span class="etiqueta alta">Alta</span></td>
+                        </tr>
+                        <tr>
+                            <td>Plataforma de e-commerce</td>
+                            <td>02 Jun</td>
+                            <td><span class="etiqueta media">Media</span></td>
+                        </tr>
+                        <tr>
+                            <td>Aplicación móvil EvinFlow</td>
+                            <td>10 Jun</td>
+                            <td><span class="etiqueta alta">Alta</span></td>
+                        </tr>
+                        <tr>
+                            <td>Sistema de gestión interna</td>
+                            <td>18 Jun</td>
+                            <td><span class="etiqueta baja">Baja</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel">
+                <h2>Tareas pendientes</h2>
+                <ul class="lista-tareas">
+                    <li>
+                        <input type="checkbox">
+                        <span>Reunión con el cliente</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span>Enviar propuesta final</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span>Revisión de contenido</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span>Aprobación de presupuesto</span>
+                    </li>
+                </ul>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script>
+    const toggle = document.getElementById("menuToggle");
+    const sidebar = document.getElementById("sidebar");
+
+    toggle.addEventListener("click", function () {
+        sidebar.classList.toggle("activo");
+    });
+</script>
+
+</body>
+</html>

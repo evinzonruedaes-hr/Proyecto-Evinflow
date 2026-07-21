@@ -1,0 +1,414 @@
+/* colores de evinflow:
+   Verde esmeralda: #10b981
+   Azul petroleo: #0d9488
+   Azul profundo: #0f172a
+   Gris claro: #f1f5f9
+   Blanco: #ffffff
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f1f5f9;
+    color: #0f172a;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ---------- INTERFAZ GENERAL (igual al del dashboard) ---------- */
+.layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 70px 1fr;
+    grid-template-areas:
+        "sidebar topbar"
+        "sidebar contenido";
+    min-height: 100vh;
+}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #0f172a;
+    color: #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+}
+
+.sidebar .logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    padding-left: 0.5rem;
+}
+
+.sidebar .logo span {
+    color: #10b981;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex-grow: 1;
+}
+
+.nav-item {
+    color: #cbd5e1;
+    padding: 0.7rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.nav-item:hover {
+    background-color: #1e293b;
+    color: #ffffff;
+}
+
+.nav-item.activo {
+    background-color: #0d9488;
+    color: #ffffff;
+}
+
+.sidebar-usuario {
+    border-top: 1px solid #1e293b;
+    padding-top: 1rem;
+    padding-left: 0.5rem;
+}
+
+.sidebar-usuario .nombre {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.sidebar-usuario .rol {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+/* ---------- TOPBAR ---------- */
+.topbar {
+    grid-area: topbar;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1.5rem;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.buscador {
+    flex-grow: 1;
+    max-width: 320px;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #f1f5f9;
+}
+
+.topbar-derecha {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.icono {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #10b981;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* ---------- CONTENIDO ---------- */
+.contenido {
+    grid-area: contenido;
+    padding: 1.5rem;
+}
+
+/* ---------- ENCABEZADO DE LA PAGINA ---------- */
+.encabezado-pagina {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.encabezado-pagina h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.encabezado-pagina p {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.btn-primario {
+    background-color: #10b981;
+    color: #ffffff;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primario:hover {
+    background-color: #0d9488;
+}
+
+.btn-secundario {
+    background-color: #ffffff;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-secundario:hover {
+    background-color: #f1f5f9;
+}
+
+/* ---------- BARRA DE BUSQUEDA ---------- */
+.barra-tabla {
+    margin-bottom: 1rem;
+}
+
+.input-busqueda {
+    width: 100%;
+    max-width: 360px;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+/* ---------- PANEL / TABLA ---------- */
+.panel {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 1.2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    overflow-x: auto;
+}
+
+.tabla-datos {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.tabla-datos th {
+    text-align: left;
+    color: #64748b;
+    padding: 0.7rem 0.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    white-space: nowrap;
+}
+
+.tabla-datos td {
+    padding: 0.8rem 0.5rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.celda-acciones {
+    display: flex;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.btn-icono {
+    border: none;
+    border-radius: 6px;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-editar {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+.btn-editar:hover {
+    background-color: #bae6fd;
+}
+
+.btn-eliminar {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.btn-eliminar:hover {
+    background-color: #fecaca;
+}
+
+.mensaje-vacio {
+    text-align: center;
+    color: #64748b;
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* ---------- OVERLAY DEL FORMULARIO ---------- */
+.overlay-formulario {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 1rem;
+}
+
+.caja-formulario {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 1.8rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.caja-formulario h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+.campo {
+    margin-bottom: 1rem;
+}
+
+.campo label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    color: #334155;
+}
+
+.campo input {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.campo input:focus {
+    outline: none;
+    border-color: #10b981;
+}
+
+.botones-formulario {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+/*Verificacion de llenado de formulario*/
+button:hover{
+    background-color:#0f172A;
+}
+
+input:required:valid{
+    border-color: #10b981;
+}
+
+input:invalid:not(:placeholder-shown){
+    border-color: red;
+}
+
+
+
+/*
+    Esta regla va DESPUÉS de .overlay-formulario a propósito.
+    Ambas tienen la misma especificidad (una sola clase cada una), así
+    que cuando un elemento tiene las dos clases al tiempo
+    (overlay-formulario + oculto), CSS aplica la que está escrita más
+    abajo en el archivo. Si .oculto quedara antes, .overlay-formulario
+    (con su "display: flex") siempre ganaría y el formulario nunca se
+    ocultaría de verdad, sin importar lo que haga JavaScript.
+*/
+.oculto {
+    display: none;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+
+    .layout {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "topbar"
+            "contenido";
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -240px;
+        top: 0;
+        bottom: 0;
+        width: 240px;
+        z-index: 100;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar.activo {
+        left: 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .encabezado-pagina {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .buscador {
+        display: none;
+    }
+
+    .celda-acciones {
+        flex-direction: column;
+    }
+}

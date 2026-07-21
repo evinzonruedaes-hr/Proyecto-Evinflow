@@ -1,0 +1,489 @@
+/* colores de evinflow:
+   Verde esmeralda: #10b981
+   Azul petroleo: #0d9488
+   Azul profundo: #0f172a
+   Gris claro: #f1f5f9
+   Blanco: #ffffff
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f1f5f9;
+    color: #0f172a;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ---------- LAYOUT GENERAL (igual al resto de páginas) ---------- */
+.layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 70px 1fr;
+    grid-template-areas:
+        "sidebar topbar"
+        "sidebar contenido";
+    min-height: 100vh;
+}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #0f172a;
+    color: #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+}
+
+.sidebar .logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    padding-left: 0.5rem;
+}
+
+.sidebar .logo span {
+    color: #10b981;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex-grow: 1;
+}
+
+.nav-item {
+    color: #cbd5e1;
+    padding: 0.7rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.nav-item:hover {
+    background-color: #1e293b;
+    color: #ffffff;
+}
+
+.nav-item.activo {
+    background-color: #0d9488;
+    color: #ffffff;
+}
+
+.sidebar-usuario {
+    border-top: 1px solid #1e293b;
+    padding-top: 1rem;
+    padding-left: 0.5rem;
+}
+
+.sidebar-usuario .nombre {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.sidebar-usuario .rol {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+/* ---------- TOPBAR ---------- */
+.topbar {
+    grid-area: topbar;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1.5rem;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.buscador {
+    flex-grow: 1;
+    max-width: 320px;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #f1f5f9;
+}
+
+.topbar-derecha {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.icono {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #10b981;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* ---------- CONTENIDO ---------- */
+.contenido {
+    grid-area: contenido;
+    padding: 1.5rem;
+}
+
+/* ---------- ENCABEZADO DE LA PAGINA ---------- */
+.encabezado-pagina {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.encabezado-pagina h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.encabezado-pagina p {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.btn-primario {
+    background-color: #10b981;
+    color: #ffffff;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primario:hover {
+    background-color: #0d9488;
+}
+
+.btn-secundario {
+    background-color: #ffffff;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-secundario:hover {
+    background-color: #f1f5f9;
+}
+
+/* ---------- BARRA DE BUSQUEDA Y FILTRO ---------- */
+.barra-tabla {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.input-busqueda {
+    flex-grow: 1;
+    max-width: 360px;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.selector-filtro {
+    padding: 0.6rem 0.9rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+/* ---------- PANEL / TABLA ---------- */
+.panel {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 1.2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    overflow-x: auto;
+}
+
+.tabla-datos {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.tabla-datos th {
+    text-align: left;
+    color: #64748b;
+    padding: 0.7rem 0.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    white-space: nowrap;
+}
+
+.tabla-datos td {
+    padding: 0.8rem 0.5rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.celda-acciones {
+    display: flex;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.btn-icono {
+    border: none;
+    border-radius: 6px;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-editar {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+.btn-editar:hover {
+    background-color: #bae6fd;
+}
+
+.btn-eliminar {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.btn-eliminar:hover {
+    background-color: #fecaca;
+}
+
+.mensaje-vacio {
+    text-align: center;
+    color: #64748b;
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* ---------- ETIQUETAS DE ESTADO DE PAGO ---------- */
+.etiqueta-pago {
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.etiqueta-pago.pagado {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.etiqueta-pago.pendiente {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.etiqueta-pago.vencido {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* ---------- OVERLAY DEL FORMULARIO ---------- */
+.overlay-formulario {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 1rem;
+}
+
+.caja-formulario {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 1.8rem;
+    width: 100%;
+    max-width: 460px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.caja-formulario h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+.campo {
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+.campo label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    color: #334155;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: inherit;
+}
+
+.campo textarea {
+    resize: vertical;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+    outline: none;
+    border-color: #10b981;
+}
+
+.campo input:disabled {
+    background-color: #f1f5f9;
+    color: #64748b;
+}
+
+.fila-campos {
+    display: flex;
+    gap: 1rem;
+}
+
+.botones-formulario {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+/*Verificacion de llenado de formulario*/
+button:hover{
+    background-color:#0f172A;
+}
+
+input:required:valid{
+    border-color: #10b981;
+}
+
+input:invalid:not(:placeholder-shown){
+    border-color: red;
+}
+
+
+
+/*
+    Esta regla va DESPUÉS de .overlay-formulario a propósito (mismo motivo
+    que en clientes.css y proyectos.css): ambos selectores tienen la misma
+    especificidad, así que si .oculto quedara antes, .overlay-formulario
+    (display: flex) siempre ganaría y el formulario nunca se ocultaría.
+*/
+.oculto {
+    display: none;
+}
+
+/* Mensaje de error de validación (ej: abono mayor al monto) */
+.mensaje-error {
+    color: #dc2626;
+    font-size: 0.85rem;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+
+    .layout {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "topbar"
+            "contenido";
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -240px;
+        top: 0;
+        bottom: 0;
+        width: 240px;
+        z-index: 100;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar.activo {
+        left: 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .encabezado-pagina {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .fila-campos {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .buscador {
+        display: none;
+    }
+
+    .celda-acciones {
+        flex-direction: column;
+    }
+
+    .barra-tabla {
+        flex-direction: column;
+    }
+
+    .input-busqueda,
+    .selector-filtro {
+        max-width: 100%;
+    }
+}

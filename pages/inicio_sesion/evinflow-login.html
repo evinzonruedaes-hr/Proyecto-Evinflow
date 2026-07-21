@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EvinFlow · Iniciar sesión</title>
+<link rel="stylesheet" href="evinflow-login.css">
+</head>
+<body>
+
+  <!-- ================= PANEL IZQUIERDO — MARCA ================= -->
+  <aside class="panel-marca">
+    <div class="logo-fila">
+      <span class="logo-texto">EVIN<span>FLOW</span></span>
+    </div>
+
+    <div class="marca-centro">
+      <h1>Organiza tu trabajo,<br>mantén el <span class="acento">flujo</span>.</h1>
+      <p>Plataforma integral para la gestión de clientes, proyectos y presupuestos. Todo en flujo, todo en orden.</p>
+    </div>
+  </aside>
+
+  <!-- ================= PANEL DERECHO — FORMULARIO ================= -->
+  <main class="panel-form">
+    <div class="form-caja">
+      <span class="form-one">Acceso a la plataforma</span>
+      <h2>Bienvenido de nuevo</h2>
+      <p class="subtitulo">Ingresa tus datos para continuar con tu flujo de trabajo.</p>
+
+      <form>
+        <div class="campo">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+        </div>
+
+        <div class="campo">
+          <label for="clave">Contraseña</label>
+          <input type="password" id="clave" name="clave" placeholder="••••••••" required>
+        </div>
+
+        <div class="fila-opciones">
+          <label class="recordarme">
+            <input type="checkbox" name="recordarme">
+            Recordarme
+          </label>
+          <a href="#" class="enlace-clave">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <button type="submit" class="btn-principal">Iniciar sesión</button>
+
+        <div class="separador">o continúa con</div>
+
+        <button type="button" class="btn-google">Continuar con Google</button>
+      </form>
+
+      <p class="registro">¿No tienes una cuenta? <a href="../registro/evinflow-registro.html">Regístrate gratis</a></p>
+    </div>
+  </main>
+
+</body>
+</html>

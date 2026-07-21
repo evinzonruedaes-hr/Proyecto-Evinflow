@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EvinFlow - Tareas</title>
+<link rel="stylesheet" href="tareas.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR (igual al resto de páginas) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">Evin<span>Flow</span></div>
+
+        <nav class="nav-menu">
+            <a href="../dashboard/dashboard.html" class="nav-item">Dashboard</a>
+            <a href="../Clientes/clientes.html" class="nav-item">Clientes</a>
+            <a href="../proyectos/proyectos.html" class="nav-item">Proyectos</a>
+            <a href="../presupuesto/presupuestos.html" class="nav-item">Presupuestos</a>
+            <a href="tareas.html" class="nav-item activo">Tareas</a>
+            <a href="../perfil/perfil.html" class="nav-item">Configuración</a>
+        </nav>
+
+        <div class="sidebar-usuario">
+            <p class="nombre">Stiven Rueda</p>
+            <p class="rol">Administrador</p>
+        </div>
+    </aside>
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <input type="text" class="buscador" placeholder="Buscar...">
+        <div class="topbar-derecha">
+            <span class="icono">🔔</span>
+            <div class="avatar">S</div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO -->
+    <main class="contenido">
+
+        <div class="encabezado-pagina">
+            <div>
+                <h1>Tareas</h1>
+                <p>Organiza las tareas de tus proyectos.</p>
+            </div>
+
+            <button class="btn-primario" id="btnNuevaTarea">+ Nueva tarea</button>
+        </div>
+
+        <!-- BARRA DE BUSQUEDA Y FILTRO -->
+        <div class="barra-tabla">
+
+            <input type="text" id="buscadorTareas" class="input-busqueda" placeholder="Buscar tarea por descripción o proyecto...">
+
+            <select id="filtroEstadoTarea" class="selector-filtro">
+                <option value="todas">Todas</option>
+                <option value="pendiente">Pendientes</option>
+                <option value="completada">Completadas</option>
+            </select>
+        </div>
+
+        <!-- TABLA DE TAREAS -->
+        <div class="panel">
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Descripción</th>
+                        <th>Proyecto</th>
+                        <th>Fecha límite</th>
+                        <th>Prioridad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <!--
+                    Este <tbody> se llena con JavaScript (ver tareas.js).
+                    Las 3 tareas de ejemplo ahora viven en un arreglo
+                    dentro de tareas.js.
+                -->
+                <tbody id="tablaTareasBody"></tbody>
+            </table>
+
+   
+            <p class="mensaje-vacio oculto" id="mensajeSinTareas">
+            </p>
+        </div>
+
+    </main>
+
+    <!--
+        Formulario de "Nueva tarea" / "Editar tarea", integrado
+        directamente aquí (todo en un solo archivo HTML, igual que
+        Clientes, Proyectos y Presupuestos).
+    -->
+    <div class="overlay-formulario oculto" id="formularioTarea">
+        <div class="caja-formulario">
+            <h2 id="tituloFormularioTarea">Nueva tarea</h2>
+
+            <form id="formTarea">
+                <div class="campo">
+                    <label for="descripcionTarea">Descripción</label>
+                    <input type="text" id="descripcionTarea" name="descripcion" required>
+                </div>
+
+                <div class="campo">
+                    <label for="proyectoTarea">Proyecto asociado</label>
+                    <!-- Las opciones se generan con JS (cargarOpcionesProyecto), a partir de proyectosDisponibles. -->
+                    <select id="proyectoTarea" name="proyectoId" required>
+                        <option value="">Selecciona un proyecto</option>
+                    </select>
+                </div>
+
+                <div class="fila-campos">
+                    <div class="campo">
+                        <label for="fechaLimiteTarea">Fecha límite</label>
+                        <input type="date" id="fechaLimiteTarea" name="fechaLimite" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="prioridadTarea">Prioridad</label>
+                        <select id="prioridadTarea" name="prioridad" required>
+                            <option value="baja">Baja</option>
+                            <option value="media">Media</option>
+                            <option value="alta">Alta</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="botones-formulario">
+                    <button type="button" class="btn-secundario" id="btnCancelarTarea">Cancelar</button>
+                    <button type="submit" class="btn-primario">Guardar tarea</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script src="tareas.js"></script>
+
+</body>
+</html>

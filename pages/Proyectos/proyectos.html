@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EvinFlow - Proyectos</title>
+<link rel="stylesheet" href="proyectos.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR (igual al del dashboard y clientes) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">Evin<span>Flow</span></div>
+
+        <nav class="nav-menu">
+            <a href="../dashboard/dashboard.html" class="nav-item">Dashboard</a>
+            <a href="../Clientes/clientes.html" class="nav-item">Clientes</a>
+            <a href="proyectos.html" class="nav-item activo">Proyectos</a>
+            <a href="../presupuesto/presupuestos.html" class="nav-item">Presupuestos</a>
+            <a href="../tareas/tareas.html" class="nav-item">Tareas</a>
+            <a href="../perfil/perfil.html" class="nav-item">Configuración</a>
+        </nav>
+
+        <div class="sidebar-usuario">
+            <p class="nombre">Stiven Rueda</p>
+            <p class="rol">Administrador</p>
+        </div>
+    </aside>
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <input type="text" class="buscador" placeholder="Buscar...">
+        <div class="topbar-derecha">
+            <span class="icono">🔔</span>
+            <div class="avatar">S</div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO -->
+    <main class="contenido">
+
+        <div class="encabezado-pagina">
+            <div>
+                <h1>Proyectos</h1>
+                <p>Gestiona los proyectos asociados a tus clientes.</p>
+            </div>
+            <button class="btn-primario" id="btnNuevoProyecto">+ Nuevo proyecto</button>
+        </div>
+        
+        <!-- BARRA DE BUSQUEDA Y FILTRO POR ESTADO -->
+        <div class="barra-tabla">
+            <input type="text" id="buscadorProyectos" class="input-busqueda" placeholder="Buscar proyecto por nombre o cliente...">
+            <select id="filtroEstado" class="selector-filtro">
+                <option value="todos">Todos los estados</option>
+                <option value="pendiente">Pendiente</option>
+                <option value="en_proceso">En proceso</option>
+                <option value="finalizado">Finalizado</option>
+            </select>
+        </div>
+
+        <!-- TABLA DE PROYECTOS -->
+        <div class="panel">
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Cliente</th>
+                        <th>Presupuesto</th>
+                        <th>Fecha de entrega</th>
+                        <th>Estado</th>
+                        <th>Prioridad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <!--
+                    Este <tbody> se llena con JavaScript (ver proyectos.js).
+                    Los 3 proyectos de ejemplo ahora viven en un arreglo
+                    dentro de proyectos.js, y una función los dibuja aquí.
+                -->
+                <tbody id="tablaProyectosBody"></tbody>
+            </table>
+
+            <p class="mensaje-vacio oculto" id="mensajeSinProyectos">
+                Aún no tienes proyectos registrados. Usa el botón "+ Nuevo proyecto" para agregar el primero.
+            </p>
+        </div>
+
+    </main>
+
+    <!--
+        Formulario de "Nuevo proyecto" / "Editar proyecto", integrado
+        directamente aquí (todo en un solo archivo HTML). Empieza oculto
+        gracias a la clase "oculto"; proyectos.js le quita/agrega esa
+        clase para mostrarlo u ocultarlo.
+    -->
+    <div class="overlay-formulario oculto" id="formularioProyecto">
+        <div class="caja-formulario">
+            <h2 id="tituloFormularioProyecto">Nuevo proyecto</h2>
+
+            <form id="formProyecto">
+                <div class="campo">
+                    <label for="nombreProyecto">Nombre del proyecto</label>
+                    <input type="text" id="nombreProyecto" name="nombre" required>
+                </div>
+
+                <div class="campo">
+                    <label for="clienteProyecto">Cliente</label>
+                    <select id="clienteProyecto" name="clienteId" required>
+                        <option value="">Selecciona un cliente</option>
+                        <option value="cliente1">Grupo Empresarial SAS</option>
+                        <option value="cliente2">Constructora del Valle</option>
+                        <option value="cliente3">María Fernanda López</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="descripcionProyecto">Descripción</label>
+                    <textarea id="descripcionProyecto" name="descripcion" rows="3" required></textarea>
+                </div>
+
+                <div class="fila-campos">
+                    <div class="campo">
+                        <label for="presupuestoProyecto">Presupuesto</label>
+                        <input type="number" id="presupuestoProyecto" name="presupuesto" min="0" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="fechaEntregaProyecto">Fecha de entrega</label>
+                        <input type="date" id="fechaEntregaProyecto" name="fechaEntrega" required>
+                    </div>
+                </div>
+
+                <div class="fila-campos">
+                    <div class="campo">
+                        <label for="estadoProyecto">Estado</label>
+                        <select id="estadoProyecto" name="estado" required>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="en_proceso">En proceso</option>
+                            <option value="finalizado">Finalizado</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="prioridadProyecto">Prioridad</label>
+                        <select id="prioridadProyecto" name="prioridad" required>
+                            <option value="baja">Baja</option>
+                            <option value="media">Media</option>
+                            <option value="alta">Alta</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="botones-formulario">
+                    <button type="button" class="btn-secundario" id="btnCancelarProyecto">Cancelar</button>
+                    <button type="submit" class="btn-primario">Guardar proyecto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script src="proyectos.js"></script>
+
+</body>
+</html>
